@@ -33,7 +33,7 @@ namespace Application.Features.ProgramingLanguages.Commands.UpdateProgrammingLan
 
             public async Task<UpdatedProgrammingLanguageDto> Handle(UpdateProgrammingLanguageCommand request, CancellationToken cancellationToken)
             {
-                _businessRules.IsExits(request.Name);
+                await _businessRules.IsExits(request.Name);
                 
                 var mappedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
                 var updatedProgrammingLanguage = await _programmingLanguageRepository.UpdateAsync(mappedProgrammingLanguage);
