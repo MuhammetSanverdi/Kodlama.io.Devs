@@ -5,6 +5,7 @@ namespace Core.Security.Entities;
 public class OperationClaim : Entity
 {
     public string Name { get; set; }
+    public virtual ICollection<UserOperationClaim> UserOperationClaim{ get; set; }
 
     public OperationClaim()
     {

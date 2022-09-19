@@ -1,6 +1,7 @@
 ﻿using Application.Features.ProgramingLanguages.Models;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Requests;
 using Core.Persistence.Paging;
 using Domain.Entities;
@@ -13,9 +14,10 @@ using System.Threading.Tasks;
 
 namespace Application.Features.ProgramingLanguages.Queries.GetListProgrammingLanguage
 {
-    public class GetListProgrammingLanguageQuery:IRequest<ProgrammingLanguageListModel>
+    public class GetListProgrammingLanguageQuery:IRequest<ProgrammingLanguageListModel>,ISecuredRequest
     {
         public PageRequest PageRequest;
+        public string[] Roles => new[] { "admin" };
         public class GetListProgrammingLanguageQueryHandler : IRequestHandler<GetListProgrammingLanguageQuery, ProgrammingLanguageListModel>
         {
             private readonly IMapper _mapper;
